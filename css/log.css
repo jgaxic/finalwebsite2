@@ -1,0 +1,71 @@
+body{
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+}
+#background-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: -1;
+} 
+.log{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 90vh;
+}
+form{
+    background-color: transparent;
+    padding: 30px 30px 30px 30px;
+    border-radius: 5px;
+    border: 1px solid white;
+    backdrop-filter: blur(20px);
+}
+.log h1{
+    text-align: center;
+    color: white;
+    padding-bottom: 10px;
+}
+.log .input-box{
+    padding-bottom: 10px;
+}
+.input-box input{
+    width: 20em;
+    height: 2.5em;
+    border-radius: 5px;
+    border: none
+}
+.btn1{
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+.btn1 button{
+    width: 50%;
+    height: 2.5em;
+    background-color: white;
+    border: none;
+    border-radius: 5px;
+}
+.btn1 button:hover{
+    background-color: gray;
+}
+.register-link{
+    text-align: center;
+    padding-top: 20px;
+}
+.register-link p{
+    color: white;
+    text-decoration: none;
+}
+.register-link a{
+    color: darkblue;
+    text-decoration: none;
+    font-weight: 600;
+}
+.register-link p a:hover{
+    text-decoration: underline;
+}
