@@ -2,11 +2,11 @@ const express = require('express');                 //const expressLayouts = req
 const collection = require('./mongodb');  
 const collection1 = require('./mongodb2');           //app.use(expressLayouts);
 const app = express();
-const port = 3000;
+const port = Number(process.env.PORT) || 3000;
 
-app.set('view engine', 'ejs'); 
-app.set('views', 'C:\\Users\\Jga_x\\OneDrive\\Documents\\final website');
-app.use(express.static('C:\\Users\\Jga_x\\OneDrive\\Documents\\final website'));
+app.set('view engine', 'ejs');
+app.set('views', __dirname);
+app.use(express.static(__dirname));
 
 app.use(express.json())
 // Parse URL-encoded bodies (as sent by HTML forms)
@@ -15,10 +15,13 @@ app.use(express.urlencoded({ extended: true }));
 // In-memory storage for registered users
 const registeredUsers = [];
 
-// Serve login page
+app.get('/', (req, res) => {
+  res.render('./html/main.ejs');
+});
 
+// Serve login page
 app.get('/login', (req, res) => {
- res.render('./html/login.ejs');
+  res.render('./html/login.ejs');
 });
 
 // Serve register page
@@ -101,9 +104,23 @@ app.post('/booking', async (req,res)=>{
   console.log(userdata1);
   res.redirect('/loginmain');
 });
-app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
-})
+
+function startServer(currentPort) {
+  const server = app.listen(currentPort, () => {
+    console.log(`Server running at http://localhost:${currentPort}`);
+  });
+
+  server.on('error', (err) => {
+    if (err.code === 'EADDRINUSE') {
+      console.log(`Port ${currentPort} is busy. Trying ${currentPort + 1}...`);
+      startServer(currentPort + 1);
+      return;
+    }
+    throw err;
+  });
+}
+
+startServer(port);
 
 
 /*const letter = username.charAt(0);

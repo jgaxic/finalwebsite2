@@ -47,7 +47,7 @@
                   <p id = "Standard">Type: Standard <br> Size: 30M </p>
                   <h3 id = "Price">Price: ฿5000/days</h3>
                   <div class="d-flex justify-content-between align-items-center">
-                    <a href="/booking"><button id = "btn1" type="submit" onclick="StandardWestinSingle('Standard')">Booking</button></a>
+                    <button type="button" class="booking-btn" data-bed="Single bed room" data-room="Standard" data-price="5000">Booking</button>
                   </div>
                 </div>
               </div>
@@ -60,7 +60,7 @@
                   <p>Type: Premium <br> Size: 50M </p>
                   <h3>Price: ฿6500/days</h3>
                   <div class="d-flex justify-content-between align-items-center">
-                    <a href="/booking"><button id = "btn1" type="submit" onclick="PremiumWestinSingle()">Booking</button></a>
+                    <button type="button" class="booking-btn" data-bed="Single bed room" data-room="Premium" data-price="6500">Booking</button>
                   </div>
                 </div>
               </div>
@@ -70,10 +70,10 @@
                <img src="/img/s2.jpeg" alt="" style="height: 17.5em;">
                 <div class="card-body">
                   <h3>Single bed room</h3>
-                  <p>Type: Vip<br> Size: 80M </p>
+                  <p>Type: VIP<br> Size: 80M </p>
                   <h3>Price: ฿8000/days</h3>
                   <div class="d-flex justify-content-between align-items-center">
-                    <a href="/html/booking.html"><button id = "btn1" type="submit">Booking</button></a>
+                    <button type="button" class="booking-btn" data-bed="Single bed room" data-room="VIP" data-price="8000">Booking</button>
                   </div>
                 </div>
               </div>
@@ -87,7 +87,7 @@
                   <p>Type: Standard<br> Size: 50M </p>
                   <h3>Price: ฿6000/days</h3>
                   <div class="d-flex justify-content-between align-items-center">
-                    <a href="/html/booking.html"><button id = "btn1" type="submit">Booking</button></a>
+                    <button type="button" class="booking-btn" data-bed="Twin bed room" data-room="Standard" data-price="6000">Booking</button>
                   </div>
                 </div>
               </div>
@@ -100,7 +100,7 @@
                   <p>Type: Premium<br> Size: 70M </p>
                   <h3>Price: ฿8000/days</h3>
                   <div class="d-flex justify-content-between align-items-center">
-                    <a href="/html/booking.html"><button id = "btn1" type="submit">Booking</button></a>
+                    <button type="button" class="booking-btn" data-bed="Twin bed room" data-room="Premium" data-price="8000">Booking</button>
                   </div>
                 </div>
               </div>
@@ -110,10 +110,10 @@
                 <img src="/img/dr3.jpg" alt="" style="height: 17.5em;">
                 <div class="card-body">
                   <h3>Twin bed room</h3>
-                  <p>Type: Vip<br> Size: 90M </p>
+                  <p>Type: VIP<br> Size: 90M </p>
                   <h3>Price: ฿10000/days</h3>
                   <div class="d-flex justify-content-between align-items-center">
-                    <a href="/html/booking.html"><button id = "btn1" type="submit">Booking</button></a>
+                    <button type="button" class="booking-btn" data-bed="Twin bed room" data-room="VIP" data-price="10000">Booking</button>
                   </div>
                 </div>
               </div>
@@ -127,7 +127,7 @@
                   <p>Type: Standard<br> Size: 30M </p>
                   <h3>Price: ฿5500/days</h3>
                   <div class="d-flex justify-content-between align-items-center">
-                    <a href="/html/booking.html"><button id = "btn1" type="submit">Booking</button></a>
+                    <button type="button" class="booking-btn" data-bed="Double bed room" data-room="Standard" data-price="5500">Booking</button>
                   </div>
                 </div>
               </div>
@@ -140,7 +140,7 @@
                   <p>Type: Premium<br> Size: 50M </p>
                   <h3>Price: ฿7500/days</h3>
                   <div class="d-flex justify-content-between align-items-center">
-                    <a href="/html/booking.html"><button id = "btn1" type="submit">Booking</button></a>
+                    <button type="button" class="booking-btn" data-bed="Double bed room" data-room="Premium" data-price="7500">Booking</button>
                   </div>
                 </div>
               </div>
@@ -150,10 +150,10 @@
                 <img src="/img/R.jpeg" alt="">
                 <div class="card-body">
                   <h3>Double bed room</h3>
-                  <p>Type: Vip<br> Size: 80M </p>
+                  <p>Type: VIP<br> Size: 80M </p>
                   <h3>Price: ฿9000/days</h3>
                   <div class="d-flex justify-content-between align-items-center">
-                    <a href="/html/booking.html"><button id = "btn1" type="submit">Booking</button></a>
+                    <button type="button" class="booking-btn" data-bed="Double bed room" data-room="VIP" data-price="9000">Booking</button>
                   </div>
                 </div>
               </div>
@@ -164,3 +164,17 @@
 </body>
 </html>
 <script src="/index.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.booking-btn').forEach((button) => {
+    button.addEventListener('click', () => {
+      const params = new URLSearchParams({
+        bed: button.dataset.bed || '',
+        room: button.dataset.room || '',
+        price: button.dataset.price || '0'
+      });
+      window.location.href = `/booking?${params.toString()}`;
+    });
+  });
+});
+</script>
